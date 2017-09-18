@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+
+<link href="../css/main.css" rel="stylesheet" type="text/css"/>
+<link href="../css/weather-icons.css" rel="stylesheet" type="text/css"/>
+<h:body>
+
+    <composite:interface/>
+
+    <composite:implementation>
+
+        <h:form id="currentTemperatureForm">
+            <span class="icon dimmed wi #{weatherBean.forecast.currently.iconMapping}"/>
+            <h:outputText id="currentForeCast" value="#{weatherBean.forecast.currently.temperature}">
+                <f:convertNumber pattern="#0.0" locale="en-US"/>
+            </h:outputText>
+            <h:outputText id="someStrangeCharacter" value="°"/><br/>
+            <!--<div class="xsmall dimmed">-->
+                <!--<h:outputText id="currentySummary" value="#{weatherBean.forecast.currently.summary}"/>-->
+            <!--</div>-->
+            <p:poll interval="300" update="currentTemperatureForm"/>
+        </h:form>
+
+        <h:form id="dailyForecastForm">
+            <table id="dailyForecastTable" class="xsmall forecast-table">
+                <ui:repeat id="repeatDailyForecast" value="#{weatherBean.forecast.daily.data}" var="entry">
+                    <tr>
+                        <td>
+                            <div class="day">
+                                <h:outputText value="#{entry.date}">
+                                    <f:convertDateTime locale="DE" timeZone="Europe/Berlin" pattern="EEEE dd.MM"/>
+                                </h:outputText>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="icon-small wi #{entry.iconMapping}"/>
+                        </td>
+                        <td>
+                            <div class="temp-max">
+                                <h:outputText value="#{entry.temperatureMax}">
+                                    <f:convertNumber pattern="#0.0" locale="en-US"/>
+                                </h:outputText>
+                                <h:outputText value="°"/>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="temp-min">
+                                <h:outputText value="#{entry.temperatureMin}">
+                                    <f:convertNumber pattern="#0.0" locale="en-US"/>
+                                </h:outputText>
+                                <h:outputText value="°"/>
+                            </div>
+                        </td>
+                    </tr>
+                </ui:repeat>
+            </table>
+            <p:poll interval="600" listener="#{weatherBean.reloadForecast()}" update="dailyForecastForm"/>
+        </h:form>
+    </composite:implementation>
+</h:body>
+</html>

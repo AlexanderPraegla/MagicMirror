@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:composite="http://java.sun.com/jsf/composite"
+      xmlns:p="http://primefaces.org/ui">
+
+<link href="../css/main.css" rel="stylesheet" type="text/css"/>
+<h:head/>
+<h:body>
+
+    <composite:interface/>
+
+    <composite:implementation>
+        <h:form id="calendarForm">
+            <table id="calendar" class="xsmall calendar-table">
+                <ui:repeat id="repeatCalendar" value="#{calendarBean.entries}" var="entry">
+                    <tr>
+                        <td class="description">#{entry.summary}</td>
+                        <td class="days dimmed"><h:outputText value="#{calendarBean.getEventDate(entry)}"/></td>
+                    </tr>
+                </ui:repeat>
+            </table>
+
+            <p:poll interval="600" listener="#{calendarBean.reloadCalendar()}" update="calendarForm"/>
+        </h:form>
+    </composite:implementation>
+</h:body>
+</html>

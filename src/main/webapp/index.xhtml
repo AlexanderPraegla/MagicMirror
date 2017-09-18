@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:components="http://java.sun.com/jsf/composite/components"
+      xmlns:p="http://primefaces.org/ui">
+
+<link href="resources/css/main.css" rel="stylesheet" type="text/css"/>
+<link href="resources/css/weather-icons.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="js/lib/jquery.js"/>
+<script type="text/javascript" src="js/lib/jquery.feedToJSON.js"/>
+<script type="text/javascript" src="js/lib/ical_parser.js"/>
+<script type="text/javascript" src="js/lib/moment-with-langs.min.js"/>
+<script type="text/javascript" src="js/config.js"/>
+<script type="text/javascript" src="js/lib/rrule.js"/>
+<script type="text/javascript" src="js/lib/howler.js"/>
+<script type="text/javascript" src="js/lib/rrule.js"/>
+<script type="text/javascript"  src="js/time.js"/>
+<script type="text/javascript"  src="js/news.js"/>
+<script type="text/javascript"  src="js/HelperFunctions.js"/>
+
+<h:head/>
+<h:body>
+<f:view>
+    <div class="top left">
+        <div class="date small dimmed"/>
+        <div class="time"/>
+        <components:calendar/>
+    </div>
+
+    <!--Hier kommen die wetter komponenten hin-->
+    <div class="top right">
+        <components:weather/>
+    </div>
+
+    <div class="lower-third center-hor">
+        <components:infos/>
+    </div>
+
+    <div class="bottom center-hor">
+        <div class="news medium"/>
+    </div>
+</f:view>
+</h:body>
+</html>

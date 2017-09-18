@@ -1,0 +1,25 @@
+<ui:component xmlns="http://www.w3.org/1999/xhtml"
+              xmlns:h="http://xmlns.jcp.org/jsf/html"
+              xmlns:ui="http://java.sun.com/jsf/facelets"
+              xmlns:composite="http://java.sun.com/jsf/composite"
+              xmlns:p="http://primefaces.org/ui">
+
+    <composite:interface>
+    </composite:interface>
+
+    <composite:implementation>
+
+        <div class="medium light">
+            <h:form id="infosForm">
+                <div class="fadeInFadeOut">
+                    <h:outputText id="testId" value="#{infoBean.nextInfo()}"/>
+                </div>
+                <!--<h:outputText id="testId" value="#{weatherBean.forecast.hourly.summary}"/>-->
+
+                <p:poll interval="8" update="infosForm"/>
+                <p:poll interval="600" listener="#{infoBean.createInfos}"/>
+            </h:form>
+        </div>
+    </composite:implementation>
+
+</ui:component>
