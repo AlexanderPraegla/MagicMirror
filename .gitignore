@@ -1,2 +1,8 @@
 */client_secret.json
 */usercredentials
+.idea/
+MagicMirror.iml
+lib/
+src/main/resources/client_secret.json
+target/
+usercredentials/
