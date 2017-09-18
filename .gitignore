@@ -4,5 +4,6 @@
 MagicMirror.iml
 lib/
 src/main/resources/client_secret.json
+src/main/resources/weather.properties
 target/
 usercredentials/
